@@ -5,26 +5,27 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MarkdownModule } from "ngx-markdown";
 import { HeaderComponent } from './components/header/header.component';
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {RouterLink, RouterModule, RouterOutlet} from "@angular/router";
 import { HomeComponent } from './components/home/home.component';
-import { LogINComponent, LogInComponent } from './components/log-in/log-in.component';
 import { LoginComponent } from './components/login/login.component';
 import { MydocsComponent } from './components/mydocs/mydocs.component';
+import {DocCellComponent} from "./components/doc-cell/doc-cell.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    LogINComponent,
-    LogInComponent,
     LoginComponent,
-    MydocsComponent
+    MydocsComponent,
+    DocCellComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MarkdownModule.forRoot(),
+    RouterModule.forRoot([]),
     RouterOutlet,
     RouterLink
   ],

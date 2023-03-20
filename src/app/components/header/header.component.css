@@ -1,0 +1,8 @@
+#font-doc {
+  font-family: "Lucida Bright";
+  font-style: italic;
+}
+
+li:hover {
+  background-color: #f2f7fa;
+}

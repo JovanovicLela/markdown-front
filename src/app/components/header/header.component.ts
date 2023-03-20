@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  // change it to false
+  loggedIn = true;
+
 }

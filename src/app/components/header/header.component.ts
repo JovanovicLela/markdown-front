@@ -13,10 +13,13 @@ export class HeaderComponent implements OnInit{
   loggedIn = true;
 
   constructor(private authenticationService: AuthenticationService, private toastr: ToastrService) {
+    this.authenticationService.currentUser$.subscribe(
+      userModel => this.loggedIn = userModel != null
+    );
   }
 
   ngOnInit() {
-    this.toastr.show("Toast test");
+    this.toastr.info("Toast test");
 
   }
 

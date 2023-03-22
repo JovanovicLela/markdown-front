@@ -17,9 +17,9 @@ export class UserModel {
   displayName: string;
   password: string;
   email: string;
-  jwtToken: string[];
+  jwtToken: string;
   roles: string[];
-  dateCreated: string[];
-  dateUpdated: string[];
+  dateCreated: string;
+  dateUpdated: string;
 
 }

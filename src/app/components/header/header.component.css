@@ -4,5 +4,9 @@
 }
 
 li:hover {
-  background-color: #f2f7fa;
+  background-color: #d4f4ff;
+}
+
+a:hover, a:active, a:link {
+  color: #010857;
 }

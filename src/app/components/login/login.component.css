@@ -1,0 +1,21 @@
+.card {
+  margin-top: 50px;
+  margin-right: 10px;
+  padding: 10px;
+  row-gap: 50px;
+  width: 670px;
+  height: 450px;
+  position: fixed;
+  left: 50%;
+  top: 35%;
+  transform: translate(-50%, -50%);
+}
+/*
+
+mat-card-content {
+  width: 500px;
+  position: fixed; !* or absolute *!
+
+  left: 3%;
+}
+*/

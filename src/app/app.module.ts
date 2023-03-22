@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MarkdownModule } from "ngx-markdown";
@@ -10,6 +9,13 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MydocsComponent } from './components/mydocs/mydocs.component';
 import {DocCellComponent} from "./components/doc-cell/doc-cell.component";
+import { RegisterComponent } from './components/register/register.component';
+import { ToastrModule } from "ngx-toastr";
+import {ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatCardModule} from "@angular/material/card";
+
 
 @NgModule({
   declarations: [
@@ -18,8 +24,8 @@ import {DocCellComponent} from "./components/doc-cell/doc-cell.component";
     HomeComponent,
     LoginComponent,
     MydocsComponent,
-    DocCellComponent
-
+    DocCellComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +33,13 @@ import {DocCellComponent} from "./components/doc-cell/doc-cell.component";
     MarkdownModule.forRoot(),
     RouterModule.forRoot([]),
     RouterOutlet,
-    RouterLink
+    RouterLink,
+    ToastrModule.forRoot(),
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatCardModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

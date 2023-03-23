@@ -1,1 +1,42 @@
-<p>register works!</p>
+<div class="register-form-container">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.get('username').errors}"/>
+      <div *ngIf="submitted && registerForm.get('username').errors" class="invalid-feedback">
+        <div *ngIf="registerForm.get('username').errors.required">Username is required</div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="displayName">Display Name</label>
+      <input type="text" id="displayName" formControlName="displayName" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.get('displayName').errors }" />
+      <div *ngIf="submitted && registerForm.get('displayName').errors" class="invalid-feedback">
+        <div *ngIf="registerForm.get('displayName').errors.required">Display Name is required</div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" id="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.get('email').errors}" />
+      <div *ngIf="submitted && registerForm.get('email').errors" class="invalid-feedback">
+        <div *ngIf="registerForm.get('email').errors.required">Email is required</div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.get('password').errors }" />
+      <div *ngIf="submitted && registerForm.get('password').errors" class="invalid-feedback">
+        <div *ngIf="registerForm.get('password').errors.required">Password is required</div>
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group">
+      <button [disabled]="loading" class="btn btn-primary">Register</button>
+      <a routerLink='/login' class="btn btn-link">Cancel</a>
+    </div>
+
+  </form>
+
+</div>

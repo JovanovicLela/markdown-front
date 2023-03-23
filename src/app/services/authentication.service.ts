@@ -3,6 +3,8 @@ import {BehaviorSubject, map, Observable, of} from "rxjs";
 import { UserModel } from "../models/user-model";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
+import {marked} from "marked";
+import use = marked.use;
 
 @Injectable({
   providedIn: 'root'
@@ -44,12 +46,28 @@ export class AuthenticationService {
     );
   }
 
+  registerUser(formValue: any): Observable<UserModel> {
+
+    //const url = "http://demo9232187.mockable.io/register";
+    const url = "http://localhost:9999/user/create";
+
+    return this.httpClient.post<UserModel>(url, formValue).pipe(
+      map(userModel => {
+
+        this.cookieService.set(AuthenticationService.USER_INFO, JSON.stringify(userModel));
+
+        this.userInfoSubject.next(userModel);
+
+        return userModel;
+        })
+    );
+  }
+
   public get currentUserValue() {
     return this.userInfoSubject.value;
   }
 
   logout() {
-
     this.cookieService.delete(AuthenticationService.USER_INFO);
 
     this.userInfoSubject.next(null);

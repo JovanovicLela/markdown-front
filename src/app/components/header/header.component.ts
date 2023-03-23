@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit{
   // change it to false
   loggedIn = true;
 
-  constructor(private authenticationService: AuthenticationService, private toastr: ToastrService) {
+  constructor(private authenticationService: AuthenticationService, private toastr: ToastrService, private router: Router) {
     this.authenticationService.currentUser$.subscribe(
       userModel => this.loggedIn = userModel != null
     );
@@ -28,5 +29,7 @@ export class HeaderComponent implements OnInit{
     event.preventDefault();
 
     this.authenticationService.logout();
+    this.toastr.show("You are logged out");
+    this.router.navigate(['/home']);
   }
 }

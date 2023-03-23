@@ -44,7 +44,14 @@ export class AuthenticationService {
     );
   }
 
+  public get currentUserValue() {
+    return this.userInfoSubject.value;
+  }
+
   logout() {
-    // TODO: log out logic
+
+    this.cookieService.delete(AuthenticationService.USER_INFO);
+
+    this.userInfoSubject.next(null);
   }
 }

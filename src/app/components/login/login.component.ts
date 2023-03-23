@@ -18,6 +18,11 @@ export class LoginComponent implements OnInit{
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
               private router: Router) {
+
+    if (this.authenticationService.currentUserValue != null && this.authenticationService.currentUserValue != undefined) {
+      this.router.navigate(['/home']);
+    }
+
   }
 
   ngOnInit(): void {
@@ -26,11 +31,6 @@ export class LoginComponent implements OnInit{
       password: ['', Validators.required]
     });
   }
-
-  get f() {
-    return this.loginForm.controls;
-  }
-
 
   onSubmit() {
     this.submitted = true;

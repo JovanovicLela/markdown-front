@@ -1,1 +1,12 @@
-<p>mydocs works!</p>
+<div class="mydocs-container">
+
+  <div class="mydocs-container-title">
+    My documents
+  </div>
+  <div class="mydocs-list-container">
+    <div *ngFor="let doc of myDocsList">
+      <app-doc-cell [doc]="doc" id="{{ doc.id }}" (docDeleted)="cellDeleted($event)"></app-doc-cell>
+    </div>
+  </div>
+
+</div>

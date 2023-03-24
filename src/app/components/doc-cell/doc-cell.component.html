@@ -1,1 +1,20 @@
-<p>doc-cell works!</p>
+<div class="doc-cell-container">
+
+  <div class="doc-title-container">
+    {{ doc.title }}
+  </div>
+
+  <div class="doc-info-container">
+    <div class="doc-updated-at-container">
+      {{ doc.dateUpdated | date}}
+    </div>
+    <div *ngIf="currentUserIsOwner()" class="doc-is-public-container">
+      <input type="checkbox" [checked]="doc.available" />
+      Public
+    </div>
+    <div *ngIf="currentUserIsOwner()" class="doc-delete-container">
+      <button (click)="deleteDocument($event)">Delete</button>
+    </div>
+  </div>
+
+</div>

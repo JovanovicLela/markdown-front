@@ -9,7 +9,7 @@
       {{ doc.dateUpdated | date}}
     </div>
     <div *ngIf="currentUserIsOwner()" class="doc-is-public-container">
-      <input type="checkbox" [checked]="doc.available" />
+      <input type="checkbox" [checked]="doc.available" (change)="cellStatusChange($event)" (click)="$event.stopPropagation()" />
       Public
     </div>
     <div *ngIf="currentUserIsOwner()" class="doc-delete-container">

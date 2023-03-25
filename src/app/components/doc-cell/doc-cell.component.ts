@@ -23,6 +23,9 @@ export class DocCellComponent implements OnInit{
   @Output()
   docDeleted: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output()
+  availabilityChanged: EventEmitter<void> = new EventEmitter();
+
   ngOnInit(): void {
   }
 
@@ -60,5 +63,24 @@ export class DocCellComponent implements OnInit{
     if (this.doc && this.doc.id) {
       this.router.navigate(['/doc', this.doc.id]);
     }
+  }
+
+  cellStatusChange(event) {
+    const status = event.target.checked;
+    const dateUpdatedTmp = this.doc.dateUpdated;
+
+    this.doc.dateUpdated = null;
+    this.doc.available = status;
+    this.docService.saveDoc(this.doc).subscribe(
+      data => {
+        this.doc = data;
+        this.availabilityChanged.emit();
+      },
+      error => {
+        this.doc.available = !status;
+        this.doc.dateUpdated = dateUpdatedTmp;
+        alert(`Document ${this.doc.id} was not saved: ${error.message}`)
+      }
+    );
   }
 }

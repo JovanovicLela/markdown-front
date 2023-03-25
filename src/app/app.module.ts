@@ -11,11 +11,12 @@ import { MydocsComponent } from './components/mydocs/mydocs.component';
 import {DocCellComponent} from "./components/doc-cell/doc-cell.component";
 import { RegisterComponent } from './components/register/register.component';
 import { ToastrModule } from "ngx-toastr";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule} from "@angular/material/card";
 import {CookieService} from "ngx-cookie-service";
+import {DocComponent} from "./components/doc/doc.component";
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {CookieService} from "ngx-cookie-service";
     LoginComponent,
     MydocsComponent,
     DocCellComponent,
-    RegisterComponent
+    RegisterComponent,
+    DocComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import {CookieService} from "ngx-cookie-service";
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    FormsModule
 
   ],
   providers: [

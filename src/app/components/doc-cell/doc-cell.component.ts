@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DocModel} from "../../models/doc-model";
 import {AuthenticationService} from "../../services/authentication.service";
 import {DocsService} from "../../services/docs.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-doc-cell',
@@ -12,7 +13,8 @@ export class DocCellComponent implements OnInit{
 
 
   constructor(private authenticationService: AuthenticationService,
-              private docService: DocsService) {
+              private docService: DocsService,
+              private router: Router) {
   }
 
   @Input()
@@ -47,8 +49,6 @@ export class DocCellComponent implements OnInit{
       return false;
     }
 
-
-
     const docOwner = this.doc.userId;
     const currentUserId = this.authenticationService.currentUserValue.id;
 
@@ -56,4 +56,9 @@ export class DocCellComponent implements OnInit{
   }
 
 
+  cellClicked() {
+    if (this.doc && this.doc.id) {
+      this.router.navigate(['/doc', this.doc.id]);
+    }
+  }
 }

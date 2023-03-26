@@ -14,7 +14,16 @@ export class JwtInterceptor implements HttpInterceptor {
 
     const currentUser: UserModel = this.authenticationService.currentUserValue;
 
-    return null;
+    if (currentUser && currentUser.jwtToken) {
+
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentUser.jwtToken}`
+        }
+      });
+    }
+
+    return next.handle(req);
   }
 
 }

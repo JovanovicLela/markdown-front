@@ -16,17 +16,27 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.fetchRecentDocs();
+    this.docsService.fetchRecentDocuments().subscribe(
+      data => {
+        this.recentDocs = data;
+      },
+      error => {
+        alert(`Recent documents could not be fetched: ${error.message}`)
+      });
   }
 
   fetchRecentDocs() {
-    this.docsService.fetchRecentDocuments().subscribe(
-      data => this.recentDocs = data,
-      error => alert(`Recent documents could not be fetched: ${error.message}`)
-    );
+
   }
 
   reloadRecentDocs() {
-    this.fetchRecentDocs();
+    this.docsService.fetchRecentDocuments().subscribe(
+      data => {
+        this.recentDocs = data;
+      },
+      error => {
+        alert(`Recent documents could not be fetched: ${error.message}`)
+      });
+
   }
 }

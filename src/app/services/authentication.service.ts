@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {marked} from "marked";
 import use = marked.use;
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class AuthenticationService {
 
   login(username: string, password: string): Observable<UserModel> {
 
-    const url = "http://demo9232187.mockable.io/login";
+    const url = `${environment.ENDPOINTS.USER_LOGIN}`;
 
      return this.httpClient.post<UserModel>(url, {username, password}).pipe(
       map(userModel => {
@@ -46,12 +47,14 @@ export class AuthenticationService {
     );
   }
 
-  registerUser(formValue: any): Observable<UserModel> {
+  registerUser(
+    username: string, displayName: string, email: string, password: string
+  ): Observable<UserModel> {
 
     //const url = "http://demo9232187.mockable.io/register";
-    const url = "http://localhost:9999/user/create";
+    const url = `${environment.ENDPOINTS.USER_CREATION}`;
 
-    return this.httpClient.post<UserModel>(url, formValue).pipe(
+    return this.httpClient.post<UserModel>(url, {username, displayName, email ,password}).pipe(
       map(userModel => {
 
         this.cookieService.set(AuthenticationService.USER_INFO, JSON.stringify(userModel));

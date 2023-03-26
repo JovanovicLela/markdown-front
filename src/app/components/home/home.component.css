@@ -8,8 +8,6 @@
 }
 
 .home-container-title {
-  background-color: #65e6ff;
-  padding-left: 10px;
   font-size: 30px;
   height: 80px;
   display: flex;
@@ -18,7 +16,6 @@
 }
 
 .docs-list-container {
-  background-color: white;
   min-height: 400px;
   margin-top: 20px;
   display: flex;

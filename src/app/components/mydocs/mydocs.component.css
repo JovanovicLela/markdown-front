@@ -19,7 +19,6 @@
 
 .mydocs-list-container {
   background-color: #f1f4fc;
-  min-height: 400px;
   margin-top: 20px;
   display: flex;
   flex-flow: column;

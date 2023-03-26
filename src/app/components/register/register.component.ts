@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-register',
@@ -38,8 +37,11 @@ export class RegisterComponent implements OnInit{
 
     this.loading = true;
 
-    this.authenticationService.registerUser(this.registerForm.value).subscribe(
+    this.authenticationService.registerUser(
+      this.registerForm.get('username').value, this.registerForm.get('displayName').value,
+      this.registerForm.get('email').value, this.registerForm.get('password').value).subscribe(
       data => {
+        console.log("success");
         this.router.navigate(['/home']);
       },
       error => {

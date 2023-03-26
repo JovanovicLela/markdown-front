@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DocModel} from "../../models/doc-model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DocsService} from "../../services/docs.service";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-doc',
@@ -14,10 +15,12 @@ export class DocComponent implements OnInit{
   content = '';
   docIdParam = null;
   docTitle = '';
+  createNewDoc = false;
 
   constructor(private route: ActivatedRoute,
               private docsService: DocsService,
-              private router: Router) {
+              private router: Router,
+              private authenticationService: AuthenticationService) {
 
     this.route.params.subscribe(params => {
       if (params.id) {
@@ -28,8 +31,14 @@ export class DocComponent implements OnInit{
 
   ngOnInit(): void {
 
-    if (this.docIdParam) {
+    if (this.docIdParam && this.docIdParam !== 'new') {
       this.fetchDocument();
+    } else {
+       if (this.docIdParam === 'new') {
+         this.createNewDoc = true;
+         this.doc = new DocModel();
+         this.doc.userId = this.authenticationService.currentUserValue.id;
+       }
     }
   }
 
@@ -59,17 +68,32 @@ export class DocComponent implements OnInit{
 
   saveDoc() {
 
-    this.doc.content = this.content;
+    this.doc.content = this.content === '' ? null : this.content;
     this.doc.dateUpdated = null;
-    this.doc.title = this.docTitle;
+    this.doc.title = this.docTitle === '' ? null: this.docTitle;
 
-    this.docsService.saveDoc(this.doc).subscribe(
-      data => {
-        this.router.navigate(['/mydocs']);
-      },
-      error => {
-        alert(`Document couldn't be saved: ${error.message}`);
-      }
-    );
+
+    if (this.createNewDoc) {
+      this.docsService.createDoc(this.doc).subscribe(
+        data => {
+          this.router.navigate(['/mydocs']);
+        },
+        error => {
+          alert(`Document couldn't be saved: ${error.message}`);
+        }
+      );
+
+    } else {
+      this.docsService.saveDoc(this.doc).subscribe(
+        data => {
+          this.router.navigate(['/mydocs']);
+        },
+        error => {
+          alert(`Document couldn't be saved: ${error.message}`);
+        }
+      );
+
+    }
+
   }
 }

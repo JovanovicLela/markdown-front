@@ -24,7 +24,7 @@ export class MydocsComponent implements OnInit{
           this.myDocsList = data;
         },
         error => {
-          alert(`${error}`);
+          alert(`${error.message}`);
         }
       );
     }

@@ -12,11 +12,13 @@ import {DocCellComponent} from "./components/doc-cell/doc-cell.component";
 import { RegisterComponent } from './components/register/register.component';
 import { ToastrModule } from "ngx-toastr";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule} from "@angular/material/card";
 import {CookieService} from "ngx-cookie-service";
 import {DocComponent} from "./components/doc/doc.component";
+import {JwtInterceptor} from "./interceptors/jwt-interceptor";
+import {ErrorInterceptor} from "./interceptors/error-interceptor";
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import {DocComponent} from "./components/doc/doc.component";
 
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     CookieService
   ],
   bootstrap: [AppComponent]

@@ -1,8 +1,9 @@
 
+  on: push
+
   stages:
     - build
     - test
-
 
   # BUILD
   build_phase:

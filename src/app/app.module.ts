@@ -19,6 +19,7 @@ import {CookieService} from "ngx-cookie-service";
 import {DocComponent} from "./components/doc/doc.component";
 import {JwtInterceptor} from "./interceptors/jwt-interceptor";
 import {ErrorInterceptor} from "./interceptors/error-interceptor";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {ErrorInterceptor} from "./interceptors/error-interceptor";
     HttpClientModule,
     BrowserAnimationsModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    NgbModule
 
   ],
   providers: [

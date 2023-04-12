@@ -27,7 +27,7 @@ jobs:
           path: node_modules
           key: ${{ github.ref }}
           restore-keys: |
-            ${{ github.ref }
+            ${{ github.ref }}
 
   test:
     runs-on: ubuntu-latest
